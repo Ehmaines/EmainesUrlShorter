@@ -1,0 +1,50 @@
+<main class="flex-1 flex justify-center items-center p-4 md:p-8 z-10 w-full">
+    <div
+        class="w-full max-w-2xl bg-slate-900/60 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 text-center shadow-2xl">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Shorten Your Links, <br> Expand Your <span
+                class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Reach</span>.
+        </h1>
+        <p class="text-slate-400 text-lg mb-10 max-w-lg mx-auto">
+            A premium URL shortener for modern needs. Simple, fast, and secure.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+            <div class="relative flex-1 group">
+                <input type="text" [(ngModel)]="originalUrl" placeholder="Paste your long URL here..."
+                    (keyup.enter)="shortenUrl()" [disabled]="isLoading"
+                    class="w-full px-6 py-4 bg-slate-950/50 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-transparent transition-all group-hover:border-white/20">
+            </div>
+            <button (click)="shortenUrl()" [disabled]="isLoading || !originalUrl"
+                class="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-semibold text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none transition-all flex items-center justify-center min-w-[160px]">
+                <span *ngIf="!isLoading">Shorten Now</span>
+                <span *ngIf="isLoading"
+                    class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+            </button>
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage"
+            class="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm">
+            {{ errorMessage }}
+        </div>
+
+        <!-- Result Container -->
+        <div *ngIf="shortenedUrl"
+            class="mt-8 p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center gap-4 animate-[fade-in-up_0.5s_ease-out]">
+            <div class="text-xl">✨</div>
+            <div class="flex-1 text-left overflow-hidden">
+                <a [href]="shortenedUrl" target="_blank"
+                    class="text-emerald-400 font-semibold truncate hover:underline block text-lg transition-colors">
+                    {{ shortenedUrl }}
+                </a>
+            </div>
+            <button
+                class="p-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-all active:scale-90"
+                (click)="copyToClipboard()" title="Copy to clipboard">
+                <span *ngIf="!copied" class="text-xl">📋</span>
+                <span *ngIf="copied" class="text-xl">✅</span>
+            </button>
+        </div>
+    </div>
+</main>

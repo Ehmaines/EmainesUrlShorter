@@ -1,0 +1,61 @@
+# Visual Studio
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.cache
+*.pdb
+*.dll
+*.exe
+*.obj
+*.bin
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# .NET / ASP.NET Core
+[Bb]in/
+[Oo]bj/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+var/
+appsettings.Local.json
+appsettings.Development.json
+# Uncomment the line above if you want to ignore development settings by default, 
+# though often dev teams commit a template or the dev json itself if it contains no secrets. 
+# Given the user context, I will include it but if they have secrets they should be careful.
+# Actually standard dotnet ignore strictly ignores user-specific files. 
+# I will ignore appsettings.Development.json as it often contains local db strings.
+
+# Entity Framework
+*.mdf
+*.ldf
+
+# Frontend / Angular / Node
+node_modules/
+dist/
+tmp/
+out-tsc/
+bazel-out/
+/connect.lock
+/coverage
+/devtools
+/npm-debug.log
+/yarn-error.log
+testem.log
+/typings
+
+# System
+.DS_Store
+Thumbs.db
+
+# Angular specific
+.angular/
+.sass-cache/

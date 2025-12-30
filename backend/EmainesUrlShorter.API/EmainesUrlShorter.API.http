@@ -1,0 +1,21 @@
+@EmainesUrlShorter.API_HostAddress = http://localhost:5266
+
+GET {{EmainesUrlShorter.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{EmainesUrlShorter.API_HostAddress}}/api/short-links
+Content-Type: application/json
+
+{
+  "originalUrl": "https://www.google.com",
+  "ownerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+
+###
+
+GET {{EmainesUrlShorter.API_HostAddress}}/api/short-links/CODE_HERE
+Accept: application/json
+
+###
