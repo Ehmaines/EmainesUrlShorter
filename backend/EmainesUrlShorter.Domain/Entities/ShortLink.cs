@@ -8,6 +8,7 @@ public class ShortLink
     public string Code { get; set; } = string.Empty;
     public Guid OwnerId { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public int TotalClicks { get; set; }
     
     public ICollection<LinkAccess> Accesses { get; set; } = new List<LinkAccess>();
 }

@@ -21,6 +21,6 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<LinkAccess>()
             .HasOne(l => l.ShortLink)
             .WithMany(s => s.Accesses)
-            .HasForeignKey(l => l.ShortLinkId);
+            .HasForeignKey(l => l.LinkId);
     }
 }
