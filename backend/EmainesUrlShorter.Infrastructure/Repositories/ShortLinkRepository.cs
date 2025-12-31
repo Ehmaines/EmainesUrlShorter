@@ -40,6 +40,24 @@ public class ShortLinkRepository : IShortLinkRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task AddAccessAsync(LinkAccess access)
+    {
+        await _context.LinkAccesses.AddAsync(access);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task AddAccessRangeAsync(IEnumerable<LinkAccess> accesses)
+    {
+        var accessList = accesses as IList<LinkAccess> ?? accesses.ToList();
+        if (accessList.Count == 0)
+        {
+            return;
+        }
+
+        await _context.LinkAccesses.AddRangeAsync(accessList);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<bool> CodeExistsAsync(string code)
     {
         return await _context.ShortLinks

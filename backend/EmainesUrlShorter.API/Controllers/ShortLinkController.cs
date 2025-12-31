@@ -40,16 +40,4 @@ public class ShortLinkController : ControllerBase
         var result = await _service.GetByOwnerAsync(ownerId);
         return Ok(result);
     }
-
-    [HttpGet("{code}")]
-    public async Task<IActionResult> RedirectLink(string code)
-    {
-        var originalUrl = await _service.GetOriginalUrlAsync(code);
-        if (originalUrl == null)
-        {
-            return NotFound();
-        }
-
-        return Redirect(originalUrl);
-    }
 }

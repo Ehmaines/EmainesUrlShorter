@@ -5,7 +5,7 @@ Accept: application/json
 
 ###
 
-POST {{EmainesUrlShorter.API_HostAddress}}/api/short-links
+POST http://localhost:5266/api/short-links
 Content-Type: application/json
 
 {
@@ -15,7 +15,9 @@ Content-Type: application/json
 
 ###
 
-GET {{EmainesUrlShorter.API_HostAddress}}/api/short-links/CODE_HERE
+GET http://localhost:5266/api/short-links/BUve
 Accept: application/json
 
 ###
+
+

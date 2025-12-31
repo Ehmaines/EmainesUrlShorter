@@ -7,4 +7,5 @@ public interface IShortLinkService
     Task<ShortLinkResponse> ShortenAsync(ShortenUrlRequest request);
     Task<IEnumerable<ShortLinkResponse>> GetByOwnerAsync(string ownerId);
     Task<string?> GetOriginalUrlAsync(string code);
+     Task<string?> GetOriginalUrlAndTrackAsync(string code, string? userAgent, string? ipAddress);
 }

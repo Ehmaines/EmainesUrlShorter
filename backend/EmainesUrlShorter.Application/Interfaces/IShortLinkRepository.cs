@@ -8,5 +8,7 @@ public interface IShortLinkRepository
     Task<IEnumerable<ShortLink>> GetByOwnerAsync(Guid ownerId);
     Task AddAsync(ShortLink shortLink);
     Task UpdateAsync(ShortLink shortLink);
+    Task AddAccessAsync(LinkAccess access);
+    Task AddAccessRangeAsync(IEnumerable<LinkAccess> accesses);
     Task<bool> CodeExistsAsync(string code);
 }
