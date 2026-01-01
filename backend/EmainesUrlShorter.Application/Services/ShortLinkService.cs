@@ -70,7 +70,8 @@ public class ShortLinkService : IShortLinkService
         {
             Code = l.Code,
             ShortUrl = $"{BaseUrl}{l.Code}",
-            OriginalUrl = l.OriginalUrl
+            OriginalUrl = l.OriginalUrl,
+            TotalClicks = l.TotalClicks
         });
     }
 

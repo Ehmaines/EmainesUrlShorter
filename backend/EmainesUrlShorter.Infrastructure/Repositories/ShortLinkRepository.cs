@@ -58,6 +58,36 @@ public class ShortLinkRepository : IShortLinkRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task UpdateTotalClicksAsync(IEnumerable<LinkAccess> accesses)
+    {
+        var accessList = accesses as IList<LinkAccess> ?? accesses.ToList();
+        if (accessList.Count == 0)
+        {
+            return;
+        }
+
+        var increments = accessList
+            .GroupBy(access => access.LinkId)
+            .Select(group => new { LinkId = group.Key, Count = group.Count() })
+            .ToList();
+
+        var linkIds = increments.Select(x => x.LinkId).ToList();
+        var shortLinks = await _context.ShortLinks
+            .Where(link => linkIds.Contains(link.Id))
+            .ToListAsync();
+
+        var incrementMap = increments.ToDictionary(x => x.LinkId, x => x.Count);
+        foreach (var shortLink in shortLinks)
+        {
+            if (incrementMap.TryGetValue(shortLink.Id, out var count))
+            {
+                shortLink.TotalClicks += count;
+            }
+        }
+
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<bool> CodeExistsAsync(string code)
     {
         return await _context.ShortLinks

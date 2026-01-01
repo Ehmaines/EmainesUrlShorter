@@ -10,5 +10,6 @@ public interface IShortLinkRepository
     Task UpdateAsync(ShortLink shortLink);
     Task AddAccessAsync(LinkAccess access);
     Task AddAccessRangeAsync(IEnumerable<LinkAccess> accesses);
+    Task UpdateTotalClicksAsync(IEnumerable<LinkAccess> accesses);
     Task<bool> CodeExistsAsync(string code);
 }

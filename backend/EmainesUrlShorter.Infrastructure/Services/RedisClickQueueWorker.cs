@@ -86,6 +86,7 @@ public class RedisClickQueueWorker : BackgroundService
             using var scope = _scopeFactory.CreateScope();
             var repository = scope.ServiceProvider.GetRequiredService<IShortLinkRepository>();
             await repository.AddAccessRangeAsync(batch);
+            await repository.UpdateTotalClicksAsync(batch);
         }
         catch (Exception ex)
         {
